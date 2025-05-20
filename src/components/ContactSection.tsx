@@ -1,13 +1,15 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react'; // Added social media icons
 
 const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., send to an API)
+    // Potentially include phone number in submission data
     alert('Thank you for your message! Bonnie will get back to you soon.');
     (e.target as HTMLFormElement).reset();
   };
@@ -33,6 +35,10 @@ const ContactSection: React.FC = () => {
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">Email Address</label>
                 <Input type="email" name="email" id="email" required className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">Phone Number (Optional)</label>
+                <Input type="tel" name="phone" id="phone" className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">Message</label>
@@ -63,6 +69,20 @@ const ContactSection: React.FC = () => {
                   <span className="text-sm text-secondary">(By Appointment Only)</span>
                 </span>
               </div>
+              <div className="mt-6 pt-6 border-t border-border">
+                <h4 className="text-lg font-serif font-semibold text-primary mb-3">Connect on Social Media</h4>
+                <div className="flex space-x-4">
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground hover:text-primary transition-colors">
+                    <Linkedin size={24} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground hover:text-primary transition-colors">
+                    <Facebook size={24} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground hover:text-primary transition-colors">
+                    <Instagram size={24} />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,3 +92,4 @@ const ContactSection: React.FC = () => {
 };
 
 export default ContactSection;
+
