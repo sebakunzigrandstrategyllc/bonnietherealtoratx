@@ -23,16 +23,19 @@ const AboutSection: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
           <div className="md:w-1/3 flex justify-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <Avatar className="w-48 h-48 md:w-64 md:h-64 border-4 border-primary/20 shadow-xl">
-              <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Bonnie, Austin Realtor" />
-              <AvatarFallback>BN</AvatarFallback>
+              <AvatarImage src="/lovable-uploads/4a12e33a-deef-461e-894b-a96c92efc97b.png" alt="Bonnie Francis, Austin Realtor" />
+              <AvatarFallback>BF</AvatarFallback>
             </Avatar>
           </div>
           <div className="md:w-2/3 text-center md:text-left animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <p className="text-lg text-foreground mb-6">
-              Welcome to Austin! I'm Bonnie, your dedicated real estate partner in this vibrant city. With years of experience and a deep love for Austin's unique neighborhoods, I'm committed to helping you find not just a house, but a place you can truly call home.
+              When it comes to buying or selling a home, you deserve more than just a Realtor®—you deserve a trusted partner who is fully dedicated to your happiness. I am Bonnie Francis, and I am here to make one of life’s most significant decisions a seamless, rewarding experience.
+            </p>
+            <p className="text-lg text-foreground mb-6">
+              My mission goes beyond closing deals; I help clients realize dreams, build futures, and create spaces where life can flourish. Every transaction is personal to me because I know how personal it is for you. With every client, I bring my expertise and a genuine passion for making the process as smooth and manageable as possible. There’s no greater joy for me than seeing the relief and excitement on my client’s faces when they find their perfect home or complete a successful sale.
             </p>
             <p className="text-lg text-foreground mb-8">
-              Whether you're buying your first home, seeking a luxury property, or looking to sell, I provide personalized service, expert market insights, and a seamless transaction process. My goal is to make your real estate journey enjoyable and successful.
+              I don’t just guide you through the process—I advocate for you, listen to your needs, and ensure you feel supported from the first meeting through well beyond the transaction. When you work with me, you’re not just getting a Realtor®—you’re gaining a committed professional who is deeply invested in your future and happiness.
             </p>
             <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4">Why Work With Me?</h3>
             <ul className="space-y-3">
