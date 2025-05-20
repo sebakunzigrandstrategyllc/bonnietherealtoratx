@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -108,6 +107,8 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/aspect-ratio'), // Add the aspect-ratio plugin here
+  ],
 } satisfies Config;
-

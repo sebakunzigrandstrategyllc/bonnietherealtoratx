@@ -2,8 +2,9 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection'; // Import the new section
+import AboutSection from '@/components/AboutSection';
 import FeaturedListingsSection from '@/components/FeaturedListingsSection';
+import ListingsIframeSection from '@/components/ListingsIframeSection'; // Import the new iframe section
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
@@ -13,8 +14,9 @@ const Index: React.FC = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <AboutSection /> {/* Add the new section here */}
+        <AboutSection />
         <FeaturedListingsSection />
+        <ListingsIframeSection /> {/* Add the new iframe section here */}
         <ContactSection />
       </main>
       <Footer />
