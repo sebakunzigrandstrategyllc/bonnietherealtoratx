@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,10 +53,14 @@ const ContactSection: React.FC = () => {
                 <Mail size={20} className="mr-3 text-primary" />
                 <span>bfrancisagent60@gmail.com</span>
               </a>
-              <p className="text-foreground">
-                Austin, TX Office<br />
-                By Appointment Only
-              </p>
+              <div className="flex items-start text-foreground">
+                <MapPin size={20} className="mr-3 text-primary mt-1 flex-shrink-0" />
+                <span>
+                  10222 Pecan Park Blvd #10,<br />
+                  Austin, TX 78729<br />
+                  <span className="text-sm text-secondary">(By Appointment Only)</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
