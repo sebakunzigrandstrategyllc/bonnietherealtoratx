@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -50,7 +49,8 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="#hero" className="font-serif text-2xl font-bold text-primary">
+            <a href="#hero" className="flex items-center font-serif text-2xl font-bold text-primary">
+              <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-7 mr-2 w-auto" />
               Bonnie ATX
             </a>
           </div>

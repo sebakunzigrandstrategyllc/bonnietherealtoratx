@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -44,7 +43,10 @@ const ContactSection: React.FC = () => {
               </Button>
             </form>
             <div className="space-y-6 pt-0 md:pt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-              <h3 className="text-xl font-serif font-semibold text-primary mb-4">Contact Information</h3>
+              <div className="flex items-center mb-4">
+                <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-8 mr-3 w-auto" />
+                <h3 className="text-xl font-serif font-semibold text-primary">Contact Information</h3>
+              </div>
               <a href="tel:+15129230552" className="flex items-center text-foreground hover:text-primary transition-colors">
                 <Phone size={20} className="mr-3 text-primary" />
                 <span>(512) 923-0552</span>
