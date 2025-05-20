@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
+import AboutSection from '@/components/AboutSection'; // Import the new section
 import FeaturedListingsSection from '@/components/FeaturedListingsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -13,7 +13,7 @@ const Index: React.FC = () => {
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <AboutSection />
+        <AboutSection /> {/* Add the new section here */}
         <FeaturedListingsSection />
         <ContactSection />
       </main>
@@ -23,4 +23,3 @@ const Index: React.FC = () => {
 };
 
 export default Index;
-
