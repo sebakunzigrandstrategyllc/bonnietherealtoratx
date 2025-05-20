@@ -45,9 +45,9 @@ const ContactSection: React.FC = () => {
             </form>
             <div className="space-y-6 pt-0 md:pt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <h3 className="text-xl font-serif font-semibold text-primary mb-4">Contact Information</h3>
-              <a href="tel:+15125551234" className="flex items-center text-foreground hover:text-primary transition-colors">
+              <a href="tel:+15129230552" className="flex items-center text-foreground hover:text-primary transition-colors">
                 <Phone size={20} className="mr-3 text-primary" />
-                <span>(512) 555-1234</span>
+                <span>(512) 923-0552</span>
               </a>
               <a href="mailto:bfrancisagent60@gmail.com" className="flex items-center text-foreground hover:text-primary transition-colors">
                 <Mail size={20} className="mr-3 text-primary" />
