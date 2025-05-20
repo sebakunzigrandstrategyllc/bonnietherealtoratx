@@ -49,9 +49,9 @@ const ContactSection: React.FC = () => {
                 <Phone size={20} className="mr-3 text-primary" />
                 <span>(512) 555-1234</span>
               </a>
-              <a href="mailto:bonnie@realtoratx.com" className="flex items-center text-foreground hover:text-primary transition-colors">
+              <a href="mailto:bfrancisagent60@gmail.com" className="flex items-center text-foreground hover:text-primary transition-colors">
                 <Mail size={20} className="mr-3 text-primary" />
-                <span>bonnie@realtoratx.com</span>
+                <span>bfrancisagent60@gmail.com</span>
               </a>
               <p className="text-foreground">
                 Austin, TX Office<br />
