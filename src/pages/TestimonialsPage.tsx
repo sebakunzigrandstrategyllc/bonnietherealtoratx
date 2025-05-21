@@ -91,6 +91,20 @@ being a wonderful and very professional
 person.`,
     // rating: 5, // Assuming a positive experience, can be adjusted
   },
+  {
+    name: "Dada and Alfreda",
+    date: "Date Not Provided", // Placeholder as date wasn't given
+    text: `Hello Bonnie, This is Dada and Alfreda. We
+are writing to extend our thanks and
+appreciation for the professional services
+you offer to us during the period and 
+process of the purchased of our home.
+We also recommend your professional
+services to our friends and family
+members . We also look forward working
+with you in the future.`,
+    // rating: 5, // Assuming a positive experience, can be adjusted
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
