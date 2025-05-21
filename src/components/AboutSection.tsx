@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'; // Using Shadcn Avatar for the image
 import { CheckCircle } from 'lucide-react'; // Icon for bullet points
 
 const AboutSection: React.FC = () => {
@@ -22,10 +21,11 @@ const AboutSection: React.FC = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
           <div className="md:w-1/3 flex justify-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            <Avatar className="w-48 h-48 md:w-64 md:h-64 border-4 border-primary/20 shadow-xl">
-              <AvatarImage src="/lovable-uploads/4a12e33a-deef-461e-894b-a96c92efc97b.png" alt="Bonnie Francis, Austin Realtor" />
-              <AvatarFallback>BF</AvatarFallback>
-            </Avatar>
+            <img
+              src="/lovable-uploads/4a12e33a-deef-461e-894b-a96c92efc97b.png"
+              alt="Bonnie Francis, Austin Realtor"
+              className="w-48 sm:w-56 md:w-full max-w-xs h-auto rounded-lg border-4 border-primary/20 shadow-xl"
+            />
           </div>
           <div className="md:w-2/3 text-center md:text-left animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <p className="text-lg text-foreground mb-6">
