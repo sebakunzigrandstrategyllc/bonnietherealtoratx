@@ -41,6 +41,14 @@ I highly recommend Bonnie Francis, you will not be disappointed! GO Bonnie!!`,
     // Assuming a default rating or no rating if not specified by user
     // rating: 5, 
   },
+  {
+    name: "Ocie McCutchen Jr",
+    date: "2016 (Implied)", // Assuming a date based on "in 2016"
+    text: `We’ve known Miss Francis for over 10 years, and she has always been
+professional, cheerful, and attentive to our needs. When we started looking for a home in 2016, she came prepared with options and guided us through the
+process. With her help, we found the perfect home in Elgin and were impressed by her dedication and knowledge. Her warm personality and expertise make her a pleasure to work with. She is not only a great agent but also a genuinely kind person.`,
+    // rating: 5, // Assuming a positive experience, can be adjusted
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
@@ -107,4 +115,3 @@ const TestimonialsPage: React.FC = () => {
 };
 
 export default TestimonialsPage;
-
