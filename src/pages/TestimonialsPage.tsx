@@ -78,6 +78,19 @@ we were interested in. I highly
 recommend her!`,
     // rating: 5, // Assuming a positive experience, can be adjusted
   },
+  {
+    name: "Jorge and Zuleymi",
+    date: "Date Not Provided", // Placeholder as date wasn't given
+    text: `I am writing to let you know that we are
+very happy and extremely pleased with
+your work as a real estate agent. The
+entire process with you was super fast
+and without any setbacks. You have
+earned our affection and respect for
+being a wonderful and very professional
+person.`,
+    // rating: 5, // Assuming a positive experience, can be adjusted
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
