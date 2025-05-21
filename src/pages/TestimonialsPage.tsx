@@ -34,6 +34,13 @@ She is an inspiration for us all.
 I highly recommend Bonnie Francis, you will not be disappointed! GO Bonnie!!`,
     rating: 5, // Example rating
   },
+  {
+    name: "Dina Jacobs",
+    date: "May 2025",
+    text: `Bonnie Francis is amazing. Relocated from the Houston area. Being new to the area, Bonnie was very helpful in finding us a cozy neighborhood. She found us a perfect rental house that checked all of our boxes. She was efficient & flexible. Worked with our schedule. If you’re looking to move, Bonnie’s your lady!`,
+    // Assuming a default rating or no rating if not specified by user
+    // rating: 5, 
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
@@ -100,3 +107,4 @@ const TestimonialsPage: React.FC = () => {
 };
 
 export default TestimonialsPage;
+
