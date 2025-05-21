@@ -1,8 +1,17 @@
 
 import React from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const trecImageUrl = "/lovable-uploads/c98e6f93-9d2d-420c-abad-12a078dadb92.png";
+
   return (
     <footer className="py-8 bg-primary text-primary-foreground text-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,7 +29,22 @@ const Footer: React.FC = () => {
             TEXAS LAW REQUIRES ALL LICENSE HOLDERS TO PROVIDE THE INFORMATION ABOUT BROKERAGE SERVICES TO PROSPECTIVE CLIENTS.
           </p>
           <p className="text-xs mt-1">
-            CONSUMER PROTECTION NOTICE: FOR YOUR PROTECTION, READ THE CONSUMER PROTECTION NOTICE.
+            <Dialog>
+              <DialogTrigger asChild>
+                <span className="underline cursor-pointer hover:text-primary-foreground/80 transition-colors">
+                  CONSUMER PROTECTION NOTICE
+                </span>
+              </DialogTrigger>
+              : FOR YOUR PROTECTION, READ THE CONSUMER PROTECTION NOTICE.
+              <DialogContent className="sm:max-w-[600px] p-0">
+                <DialogHeader className="p-6 pb-0">
+                  <DialogTitle>Consumer Protection Notice</DialogTitle>
+                </DialogHeader>
+                <div className="p-6 pt-2">
+                  <img src={trecImageUrl} alt="Consumer Protection Notice" className="w-full h-auto rounded-md" />
+                </div>
+              </DialogContent>
+            </Dialog>
           </p>
         </div>
       </div>
