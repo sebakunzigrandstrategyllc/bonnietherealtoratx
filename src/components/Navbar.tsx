@@ -1,96 +1,120 @@
+
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
-
-interface NavLinkProps {
-  href: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ href, children, onClick }) => (
-  <a
-    href={href}
-    onClick={onClick}
-    className="text-foreground hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
-  >
-    {children}
-  </a>
-);
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-  const navItems = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'Listings', href: '#listings' },
-    { label: 'Contact', href: '#contact' },
+  const navLinks = [
+    { href: "/#about", text: "About" },
+    { href: "/#listings", text: "Listings" },
+    { href: "/testimonials", text: "Testimonials" }, // New link
+    { href: "/#contact", text: "Contact" },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const NavLinkItem: React.FC<{ href: string; text: string; onClick?: () => void }> = ({ href, text, onClick }) => {
+    const isExternalLink = href.startsWith('/#');
+    const isActive = isExternalLink ? location.hash === href.substring(1) && location.pathname === '/' : location.pathname === href;
 
-  const handleLinkClick = () => {
-    if (isOpen) {
-      setIsOpen(false);
+    if (isExternalLink) {
+      return (
+        <a
+          href={href}
+          onClick={onClick}
+          className={`text-sm font-medium transition-colors hover:text-primary ${
+            isActive ? 'text-primary font-semibold' : 'text-foreground/80'
+          }`}
+        >
+          {text}
+        </a>
+      );
     }
+    return (
+      <Link
+        to={href}
+        onClick={onClick}
+        className={`text-sm font-medium transition-colors hover:text-primary ${
+          isActive ? 'text-primary font-semibold' : 'text-foreground/80'
+        }`}
+      >
+        {text}
+      </Link>
+    );
   };
 
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isOpen ? 'bg-background/90 shadow-lg backdrop-blur-md' : 'bg-transparent'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <a href="#hero" className="flex items-center font-serif text-2xl font-bold text-primary">
-              <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-7 mr-2 w-auto" />
-              Bonnie ATX
-            </a>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
-                <NavLink key={item.label} href={item.href} onClick={handleLinkClick}>
-                  {item.label}
-                </NavLink>
-              ))}
-            </div>
-          </div>
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleMenu}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? <X className="block h-6 w-6" aria-hidden="true" /> : <Menu className="block h-6 w-6" aria-hidden="true" />}
-            </button>
-          </div>
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ease-in-out 
+                  ${isScrolled ? 'bg-background/95 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}
+    >
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-8 w-auto" />
+          <span className="font-serif text-xl font-bold text-primary">Bonnie The Realtor ATX</span>
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-6 items-center">
+          {navLinks.map((link) => (
+            <NavLinkItem key={link.text} href={link.href} text={link.text} />
+          ))}
+          <Button asChild size="sm" className="ml-2">
+            <a href="/#contact">Get In Touch</a>
+          </Button>
+        </nav>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
+              <div className="flex flex-col gap-6">
+                <div className="flex justify-between items-center mb-4">
+                   <Link to="/" className="flex items-center gap-2">
+                     <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="Logo" className="h-7 w-auto" />
+                     <span className="font-serif text-lg font-bold text-primary">Bonnie ATX</span>
+                   </Link>
+                  <SheetClose asChild>
+                     <Button variant="ghost" size="icon">
+                       <X className="h-5 w-5" />
+                       <span className="sr-only">Close menu</span>
+                     </Button>
+                  </SheetClose>
+                </div>
+                {navLinks.map((link) => (
+                  <SheetClose key={link.text} asChild>
+                    <NavLinkItem href={link.href} text={link.text} />
+                  </SheetClose>
+                ))}
+                <SheetClose asChild>
+                  <Button asChild className="w-full mt-4">
+                    <a href="/#contact">Get In Touch</a>
+                  </Button>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-
-      {/* Mobile menu, show/hide based on menu state. */}
-      {isOpen && (
-        <div className="md:hidden" id="mobile-menu">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background shadow-lg">
-            {navItems.map((item) => (
-              <NavLink key={item.label} href={item.href} onClick={handleLinkClick}>
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
-        </div>
-      )}
-    </nav>
+    </header>
   );
 };
 
