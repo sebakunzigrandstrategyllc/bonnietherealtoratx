@@ -59,6 +59,14 @@ recommend her services to anyone
 looking to buy, sell, or lease a property.`,
     // rating: 5, // Assuming a positive experience, can be adjusted
   },
+  {
+    name: "Amanda Guerra",
+    date: "Date Not Provided", // Placeholder as date wasn't given
+    text: `I have used Bonnie several times for my real estate needs. Each time she has
+been professional and knowledgeable. She will listen to what you want/need in
+your new home and accommodate it in her search.`,
+    // rating: 5, // Assuming a positive experience, can be adjusted
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
