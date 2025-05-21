@@ -67,6 +67,17 @@ been professional and knowledgeable. She will listen to what you want/need in
 your new home and accommodate it in her search.`,
     // rating: 5, // Assuming a positive experience, can be adjusted
   },
+  {
+    name: "Sylvia/Delia Rojas",
+    date: "Date Not Provided", // Placeholder as date wasn't given
+    text: `Bonnie worked with us to help us find a
+rental house and she was great! She
+provided us with available listings and
+was available to show us the homes that
+we were interested in. I highly
+recommend her!`,
+    // rating: 5, // Assuming a positive experience, can be adjusted
+  },
   // Add more testimonials here in the future
   // {
   // name: "John Doe",
