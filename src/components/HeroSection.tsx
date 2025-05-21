@@ -26,26 +26,25 @@ const HeroSection: React.FC = () => {
         </Button>
       </div>
 
-      {/* Property Search Placeholder Section */}
+      {/* Property Search Section */}
       <div className="relative z-10 w-full py-12 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
             Search for Properties
           </h2>
           <div className="bg-card p-6 rounded-lg shadow-xl max-w-2xl mx-auto">
-            <p className="text-muted-foreground mb-4">
-              Property search widget coming soon! Or, explore listings on your favorite platform:
+            <p className="text-muted-foreground mb-6">
+              Explore current listings directly on our brokerage's platform:
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto hover:bg-accent/10" onClick={() => window.open('https://www.zillow.com/austin-tx/', '_blank')}>
-                <ExternalLink className="mr-2 h-5 w-5" />
-                View on Zillow
-              </Button>
-              <Button variant="outline" size="lg" className="w-full sm:w-auto hover:bg-accent/10" onClick={() => window.open('https://www.realtor.com/realestateandhomes-search/Austin_TX', '_blank')}>
-                <ExternalLink className="mr-2 h-5 w-5" />
-                View on Realtor.com
-              </Button>
-            </div>
+            <Button 
+              variant="default" // Using default variant which uses primary color
+              size="lg" 
+              className="w-full sm:w-auto hover:scale-105 transition-transform duration-300 px-8 py-3 text-lg font-semibold" 
+              onClick={() => window.open('https://allcityrealestate.com/listings/', '_blank')}
+            >
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Explore All City Real Estate Listings
+            </Button>
             {/* Placeholder for an embedded search widget if preferred */}
             {/* <div className="mt-6 h-64 bg-muted rounded-md flex items-center justify-center text-muted-foreground">
               [Real Estate Property Search Widget Placeholder]
