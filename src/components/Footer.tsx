@@ -11,15 +11,15 @@ import {
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const trecImageUrl = "/lovable-uploads/c98e6f93-9d2d-420c-abad-12a078dadb92.png";
-  const iabsImageUrl = "/lovable-uploads/7e8d514b-22cc-4d8c-bf0f-51342ddf0f19.png"; // New image URL
+  const iabsPdfUrl = "/lovable-uploads/Information_about_Brokerage_Services_11032025.pdf";
 
   return (
     <footer className="py-8 bg-primary text-primary-foreground text-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-4">
-          <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-10 w-auto mx-auto" />
+          <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-16 w-auto mx-auto" />
         </div>
-        <p className="text-sm">
+        <p className="text-xs">
           &copy; {currentYear} Bonnie The Realtor ATX. All rights reserved.
         </p>
         <p className="text-xs mt-1">
@@ -35,12 +35,12 @@ const Footer: React.FC = () => {
                   INFORMATION ABOUT BROKERAGE SERVICES
                 </span>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[600px] p-0">
+              <DialogContent className="sm:max-w-[800px] p-0">
                 <DialogHeader className="p-6 pb-0">
                   <DialogTitle>Information About Brokerage Services</DialogTitle>
                 </DialogHeader>
                 <div className="p-6 pt-2 max-h-[80vh] overflow-y-auto">
-                  <img src={iabsImageUrl} alt="Information About Brokerage Services" className="w-full h-auto rounded-md" />
+                  <iframe src={iabsPdfUrl} title="Information About Brokerage Services" className="w-full h-[70vh] rounded-md border-0" />
                 </div>
               </DialogContent>
             </Dialog>
