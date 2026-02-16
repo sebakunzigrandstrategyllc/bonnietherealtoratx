@@ -17,9 +17,9 @@ const Footer: React.FC = () => {
     <footer className="py-8 bg-primary text-primary-foreground text-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-4">
-          <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-16 w-auto mx-auto" />
+          <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-24 w-auto mx-auto" />
         </div>
-        <p className="text-xs">
+        <p className="text-[10px]">
           &copy; {currentYear} Bonnie The Realtor ATX. All rights reserved.
         </p>
         <p className="text-xs mt-1">
