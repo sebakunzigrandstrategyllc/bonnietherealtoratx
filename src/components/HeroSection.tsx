@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
         <Button 
           size="lg" 
           className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold rounded-md transition-transform duration-300 hover:scale-105"
-          // onClick={() => { /* TODO: Implement scheduling functionality or link */ }}
+          onClick={() => window.location.href = 'tel:5129230552'}
         >
           Schedule a Call
         </Button>
