@@ -19,9 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
-        serif: ['ui-serif', 'Georgia', 'serif'],
-        display: ['ui-serif', 'Georgia', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
 			colors: {
 				border: 'hsl(var(--border))',

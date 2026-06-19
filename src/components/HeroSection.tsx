@@ -1,103 +1,56 @@
+
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Phone, ExternalLink, MapPin } from 'lucide-react';
-import heroImage from '@/assets/hero-austin.jpg';
+import { ExternalLink } from 'lucide-react'; // Icon for external link
 
 const HeroSection: React.FC = () => {
   return (
-    <section
-      id="hero"
-      className="relative min-h-[92vh] flex items-center overflow-hidden grain"
-    >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Austin Texas neighborhood at sunset"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: 'var(--gradient-hero)' }}
-        />
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center text-center bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1531218150217-54595bc2b934?q=80&w=1600&auto=format&fit=crop')" }}>
+      {/* This URL is a placeholder for an Austin-specific image. You can replace it later. */}
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      
+      {/* Main Hero Content */}
+      <div className="relative z-10 p-8 max-w-3xl animate-fade-in-up flex-grow flex flex-col items-center justify-center">
+        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
+          Your Trusted Austin Realtor
+        </h1>
+        <p className="text-xl md:text-2xl text-gray-200 mb-8">
+          Let's find your dream property in the heart of Texas.
+        </p>
+        <Button 
+          size="lg" 
+          className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold rounded-md transition-transform duration-300 hover:scale-105"
+          onClick={() => window.location.href = 'tel:5129230552'}
+        >
+          Schedule a Call
+        </Button>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="max-w-3xl"
-        >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-foreground/15 backdrop-blur text-primary-foreground/95 text-sm font-medium border border-primary-foreground/20">
-            <MapPin className="h-3.5 w-3.5" />
-            Austin · Round Rock · Cedar Park · Pflugerville
-          </span>
-
-          <h1 className="mt-6 text-5xl sm:text-6xl md:text-7xl font-serif font-semibold text-primary-foreground text-balance leading-[1.05]">
-            Your home in Austin,
-            <span className="block italic font-normal text-primary-foreground/90">
-              found with heart.
-            </span>
-          </h1>
-
-          <p className="mt-6 text-lg md:text-xl text-primary-foreground/90 max-w-xl leading-relaxed">
-            I'm Bonnie Francis — a bilingual Realtor® helping families across Greater
-            Austin buy, sell, and rent with care, clarity, and zero pressure.
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            <Button
-              size="lg"
-              asChild
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-elegant text-base px-6"
+      {/* Property Search Section */}
+      <div className="relative z-10 w-full py-12 bg-background/80 backdrop-blur-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
+            Search for Properties
+          </h2>
+          <div className="bg-card p-6 rounded-lg shadow-xl max-w-2xl mx-auto">
+            <p className="text-muted-foreground mb-6">
+              Explore current listings directly on our brokerage's platform:
+            </p>
+            <Button 
+              variant="default" // Using default variant which uses primary color
+              size="lg" 
+              className="w-full sm:w-auto hover:scale-105 transition-transform duration-300 px-8 py-3 text-lg font-semibold" 
+              onClick={() => window.open('https://allcityrealestate.com/listings/', '_blank')}
             >
-              <a href="tel:5129230552">
-                <Phone className="h-4 w-4" />
-                Call (512) 923-0552
-              </a>
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Explore All City Real Estate Listings
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary text-base px-6"
-            >
-              <a href="#listings-iframe">
-                <ExternalLink className="h-4 w-4" />
-                Browse Listings
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-primary-foreground/85 text-sm"
-          >
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/70" />
-              10+ years serving Austin
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/70" />
-              Bilingual — English & Spanish
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-foreground/70" />
-              All City Real Estate
-            </span>
-          </motion.div>
-        </motion.div>
+            {/* Placeholder for an embedded search widget if preferred */}
+            {/* <div className="mt-6 h-64 bg-muted rounded-md flex items-center justify-center text-muted-foreground">
+              [Real Estate Property Search Widget Placeholder]
+            </div> */}
+          </div>
+        </div>
       </div>
     </section>
   );
