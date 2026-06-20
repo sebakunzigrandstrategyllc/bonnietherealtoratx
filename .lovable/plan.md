@@ -1,87 +1,73 @@
+## Goals
 
-# Plan: Site Refresh + Contact Form Email
-
-## Part 1 — Warm & Local Visual Refresh
-
-**Design system (index.css + tailwind.config.ts)**
-- New palette: warm cream background, deep terracotta primary, sage accent, charcoal text, soft sand neutrals (all HSL tokens).
-- Typography pair: **Fraunces** (display serif, distinctive) + **Inter** (body) — loaded via Google Fonts.
-- Soft shadows, slightly larger border radius (8–12px) for a friendlier feel.
-- Subtle background textures (noise/grain) on hero and section dividers.
-
-**Hero**
-- Replace generic Unsplash with an Austin-flavored image (skyline or neighborhood).
-- Larger, more confident headline; add Bonnie's name + "REALTOR® · Austin, TX".
-- Two CTAs side-by-side: "Call 512.923.0552" and "Browse Listings".
-- Phone number visible as text under the buttons (currently buried).
-- Trust strip below hero: "10+ years · Bilingual · All City Real Estate".
-
-**New / improved sections (homepage order)**
-1. Hero (refreshed)
-2. Trust stats band (years, families served, neighborhoods, languages)
-3. About Bonnie (refined layout, real headshot placeholder, warmer copy)
-4. Services — Buying / Selling / Renting cards with icons
-5. Featured Austin neighborhoods (Pecan Park, Round Rock, Cedar Park, etc.) — visual cards
-6. Featured listings (existing)
-7. Live listings iframe (lazy-loaded so it stops slowing the page)
-8. Testimonials carousel (homepage preview pulling from the growing testimonials list, with "See all" → /testimonials)
-9. "What to expect" 4-step process
-10. Contact (refreshed form + info)
-11. Footer (keep TREC compliance modals — IABS PDF and Consumer Protection Notice)
-
-**Mobile & UX polish**
-- Sticky bottom CTA bar on mobile: Call · Text · Email.
-- Hamburger nav with smooth slide-in drawer.
-- framer-motion scroll reveals (replace blanket fade-in-up).
-- Lazy-load listings iframe + heavy images.
-- Click-to-text link (sms:) next to call link.
-
-**SEO & trust**
-- Meta title/description tuned for "Austin Realtor", canonical, Open Graph image.
-- JSON-LD `RealEstateAgent` schema (name, phone, address, area served, image).
-- Single H1 per page, semantic landmarks, alt text on all images.
-- Footer: license #, brokerage logo, Equal Housing + MLS logos.
-
-**Compliance preserved**
-- IABS PDF modal and Consumer Protection Notice modal stay in footer (per existing TREC requirements).
+1. Add the business-card credential logos to the footer.
+2. Make the footer appear on every page (Home, Testimonials, 404).
+3. Ensure all contact/get-in-touch buttons work, sending correspondence to **[bfrancisagent60@gmail.com](mailto:bfrancisagent60@gmail.com)**.
+4. Tighten the site (polish, performance, accessibility) — no copy or color changes.
 
 ---
 
-## Part 2 — Contact Form → bfrancisagent60@gmail.com
+## 1. Footer credential logos
 
-**Setup**
-1. Enable **Lovable Cloud** (built-in backend).
-2. Set up **Lovable Emails** with a sender subdomain (e.g., `notify.bonnietherealtoratx.com`). I'll walk you through the one-click DNS step; emails actually send after DNS verifies (usually minutes).
-3. Build the email queue/send infrastructure (handled by Lovable tooling).
+Extract these logos from the uploaded business-card image and add them as a "Credentials & Affiliations" row above the existing TREC compliance block:
 
-**Email template**
-- Branded React Email template: "New Inquiry from your website" with name, email, phone, message, and timestamp.
-- `Reply-To` header set to the visitor's email so you can reply directly from Gmail.
+- Graduate, REALTOR® Institute (GRI)
+- AHWD (At Home With Diversity)
+- ABR (Accredited Buyer's Representative)
+- Equal Housing Opportunity
+- REALTOR® R logo
+- MLS (Multiple Listing Service)
 
-**Form wiring (ContactSection.tsx)**
-- Add **zod** validation (name 1–100, valid email, optional phone, message 1–2000).
-- On submit → call edge function `send-transactional-email` with template `contact-inquiry`, recipient `bfrancisagent60@gmail.com`, and the form data.
-- Also send an **auto-reply** to the visitor: "Thanks — Bonnie will be in touch shortly."
-- Replace `alert()` with a proper toast (success / error states) and a loading spinner.
-- Idempotency key per submission so retries don't duplicate.
+Approach: I will crop each badge from the uploaded card with the image tool, upload each to Lovable Assets (CDN), and render them as a responsive grayscale row (`grid grid-cols-3 sm:grid-cols-6 gap-4 items-center`) under the All City logo. The All City logo stays largest, per the existing brand rule.
 
-**Optional (recommend, ask before adding)**
-- Simple honeypot field + basic rate limit to reduce spam.
-- Store submissions in a `contact_submissions` table so nothing is lost if email ever fails.
+## 2. Footer on every page
 
----
+`Footer` is currently rendered only on `Index` and `TestimonialsPage`. I will:
 
-## Technical Notes
+- Add `<Footer />` to `NotFound.tsx`.
+- Wrap routes in `App.tsx` with a `Layout` component (`Navbar + Outlet + Footer`) so the footer is guaranteed on every current and future page. Remove the now-duplicated `<Footer />`/`<Navbar />` from `Index`, `TestimonialsPage`, and `NotFound`.
 
-- All colors stay as HSL semantic tokens in `index.css`; components use `bg-primary`, `text-foreground`, etc. — no hard-coded hex in components.
-- Animation via `framer-motion` (new dependency).
-- Email infrastructure uses Lovable Cloud's built-in `send-transactional-email` edge function; no third-party API keys needed.
-- Lazy-loading via `loading="lazy"` on images and `IntersectionObserver` for the listings iframe.
+## 3. Make every CTA work → email goes to [bfrancisagent60@gmail.com](mailto:bfrancisagent60@gmail.com)
 
-## What I'll need from you during build
+Audit + fix:
 
-- Confirm the sender subdomain you want (suggest `notify.bonnietherealtoratx.com`).
-- A real headshot of Bonnie (optional — I'll use a tasteful placeholder otherwise).
-- Bonnie's TREC license # for the footer (optional but recommended).
+- **Hero "Schedule a Call"** — already `tel:` link, keep.
+- **Navbar "Get In Touch"** (desktop + mobile) — currently `/#contact`. If user is on `/testimonials` or `/404`, the hash won't scroll. Change to navigate to `/#contact` via react-router with a small scroll-to-hash effect on `Index`.
+- **ContactSection form** — currently shows a fake `alert()` and does not send anywhere. Replace with a `mailto:bfrancisagent60@gmail.com` submission: pre-fill subject/body from the form fields using `window.location.href = mailto:...` (no backend, no credits, works immediately). Adds proper validation + success toast.
+- **Contact info block** — phone `tel:` and email `mailto:` links: verify both work (they do; keep).
+- **Footer social icons** — currently `href="#"` (dead). Either remove or accept real URLs from the user. Plan: remove until the user provides real LinkedIn/Facebook/Instagram URLs (asked below).
+- **TestimonialsPage** — no broken buttons; fine.
 
-After you approve, I'll switch to build mode and ship it in stages: design system → homepage sections → contact form backend → polish/SEO.
+All email submissions land in `bfrancisagent60@gmail.com`.
+
+## 4. Tightening suggestions (no copy/color changes)
+
+- **Performance**: add `loading="lazy"` and `decoding="async"` to non-hero images; preconnect Unsplash; convert the hero `<div style backgroundImage>` to a real `<img>` with `fetchpriority="high"`.
+- **Accessibility**: add `aria-label`s to icon-only buttons, ensure all `<a>` tags have descriptive text, add `:focus-visible` ring (already in tokens), check color-contrast on muted text.
+- **SEO**: single `<h1>` per page, proper `<title>` + meta description per route via a tiny `SEO` component (react-helmet not needed — just `document.title` in a `useEffect`), JSON-LD `RealEstateAgent` schema in `index.html`, canonical tag, OG image.
+- **Consistency**: unify section vertical rhythm (`py-16 md:py-24`), unify container (`container mx-auto px-4 sm:px-6 lg:px-8`), unify heading sizes via tokens.
+- **Mobile polish**: ensure tap targets ≥ 44px, the iframe section gets a min-height and `loading="lazy"`.
+- **Code hygiene**: remove the dead `TestimonialsCarousel` import paths, remove commented-out blocks in TestimonialsPage.
+- **404 page**: replace the hard-coded `bg-gray-100` / `text-blue-500` with semantic tokens so it inherits the site theme.
+
+## Files touched
+
+```
+src/App.tsx                       (+ Layout wrapper)
+src/components/Layout.tsx         (new — Navbar + Outlet + Footer)
+src/components/Footer.tsx         (+ credentials row, badge logos)
+src/components/ContactSection.tsx (mailto submission, toast)
+src/components/Navbar.tsx         (Get In Touch cross-route nav)
+src/components/HeroSection.tsx    (perf tweaks)
+src/pages/Index.tsx               (remove duplicate Navbar/Footer, scroll-to-hash)
+src/pages/TestimonialsPage.tsx    (remove duplicate Navbar/Footer)
+src/pages/NotFound.tsx            (tokens + remove duplicate layout)
+index.html                        (JSON-LD, meta, preconnect)
+src/assets/credentials/*.png.asset.json (6 new CDN-hosted logo pointers)
+```
+
+## Question for you before I build
+
+The footer currently has LinkedIn / Facebook / Instagram icons linking to `#` (dead). Do you want me to (a) **remove them** until you provide real URLs, or (b) **keep them and point them at URLs you'll paste now**?
+
+(a) remove them
