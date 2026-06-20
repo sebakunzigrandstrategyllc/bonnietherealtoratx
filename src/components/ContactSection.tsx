@@ -1,17 +1,52 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin, Linkedin, Facebook, Instagram } from 'lucide-react'; // Added social media icons
+import { Phone, Mail, MapPin } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+
+const CONTACT_EMAIL = 'bfrancisagent60@gmail.com';
 
 const ContactSection: React.FC = () => {
+  const { toast } = useToast();
+  const [submitting, setSubmitting] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send to an API)
-    // Potentially include phone number in submission data
-    alert('Thank you for your message! Bonnie will get back to you soon.');
-    (e.target as HTMLFormElement).reset();
+    setSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const phone = String(data.get('phone') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    if (!name || !email || !message) {
+      toast({ title: 'Please fill in the required fields.', variant: 'destructive' });
+      setSubmitting(false);
+      return;
+    }
+
+    const subject = `New inquiry from ${name} — Bonnie The Realtor ATX`;
+    const body =
+      `Name: ${name}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone || '(not provided)'}\n\n` +
+      `Message:\n${message}\n`;
+
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    toast({
+      title: 'Opening your email app…',
+      description: `Your message is being sent to ${CONTACT_EMAIL}.`,
+    });
+
+    setTimeout(() => {
+      form.reset();
+      setSubmitting(false);
+    }, 600);
   };
 
   return (
@@ -30,36 +65,40 @@ const ContactSection: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-6 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">Full Name</label>
-                <Input type="text" name="name" id="name" required className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
+                <Input type="text" name="name" id="name" required autoComplete="name" className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">Email Address</label>
-                <Input type="email" name="email" id="email" required className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
+                <Input type="email" name="email" id="email" required autoComplete="email" className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">Phone Number (Optional)</label>
-                <Input type="tel" name="phone" id="phone" className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
+                <Input type="tel" name="phone" id="phone" autoComplete="tel" className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">Message</label>
                 <Textarea name="message" id="message" rows={4} required className="bg-muted/30 border-border focus:ring-primary focus:border-primary" />
               </div>
-              <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                Send Message
+              <Button type="submit" size="lg" disabled={submitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                {submitting ? 'Sending…' : 'Send Message'}
               </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                Prefer email? Write directly to{' '}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="underline hover:text-primary">{CONTACT_EMAIL}</a>.
+              </p>
             </form>
             <div className="space-y-6 pt-0 md:pt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <div className="flex items-center mb-4">
-                <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" className="h-8 mr-3 w-auto" />
+                <img src="/lovable-uploads/e4db05f2-f1f2-425a-8669-bc04e89ab6b1.png" alt="All City Real Estate Logo" loading="lazy" decoding="async" className="h-8 mr-3 w-auto" />
                 <h3 className="text-xl font-serif font-semibold text-primary">Contact Information</h3>
               </div>
               <a href="tel:+15129230552" className="flex items-center text-foreground hover:text-primary transition-colors">
                 <Phone size={20} className="mr-3 text-primary" />
                 <span>(512) 923-0552</span>
               </a>
-              <a href="mailto:bfrancisagent60@gmail.com" className="flex items-center text-foreground hover:text-primary transition-colors">
-                <Mail size={20} className="mr-3 text-primary" />
-                <span>bfrancisagent60@gmail.com</span>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center text-foreground hover:text-primary transition-colors break-all">
+                <Mail size={20} className="mr-3 text-primary flex-shrink-0" />
+                <span>{CONTACT_EMAIL}</span>
               </a>
               <div className="flex items-start text-foreground">
                 <MapPin size={20} className="mr-3 text-primary mt-1 flex-shrink-0" />
@@ -68,20 +107,6 @@ const ContactSection: React.FC = () => {
                   Austin, TX 78729<br />
                   <span className="text-sm text-secondary">(By Appointment Only)</span>
                 </span>
-              </div>
-              <div className="mt-6 pt-6 border-t border-border">
-                <h4 className="text-lg font-serif font-semibold text-primary mb-3">Connect on Social Media</h4>
-                <div className="flex space-x-4">
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-foreground hover:text-primary transition-colors">
-                    <Linkedin size={24} />
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-foreground hover:text-primary transition-colors">
-                    <Facebook size={24} />
-                  </a>
-                  <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-foreground hover:text-primary transition-colors">
-                    <Instagram size={24} />
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -92,4 +117,3 @@ const ContactSection: React.FC = () => {
 };
 
 export default ContactSection;
-
